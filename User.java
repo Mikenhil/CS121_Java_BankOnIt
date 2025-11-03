@@ -4,6 +4,10 @@ public abstract User implements HasMenu {
 	
 	protected String userName;
 	protected String PIN;
+	
+	public User() {
+
+	}
 
 	public boolean login() {
 		return false;
@@ -27,6 +31,14 @@ public abstract User implements HasMenu {
 
 	public String getPIN() {
 		return PIN;
+	}
+
+	String menu() {
+		return "";
+	}
+
+	void start() {
+
 	}
 
 	public abstract String getReport();
