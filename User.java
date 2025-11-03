@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract User implements HasMenu {
+public abstract class User implements HasMenu {
 	
 	protected String userName;
 	protected String PIN;
@@ -25,7 +25,7 @@ public abstract User implements HasMenu {
 		return userName;
 	}
 
-	public void setPIN() {
+	public void setPIN(String PIN) {
 		this.PIN = PIN;
 	}
 
@@ -33,11 +33,11 @@ public abstract User implements HasMenu {
 		return PIN;
 	}
 
-	String menu() {
+	public String menu() {
 		return "";
 	}
 
-	void start() {
+	public void start() {
 
 	}
 

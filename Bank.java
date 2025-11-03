@@ -6,17 +6,18 @@ public class Bank implements HasMenu {
 		new Bank();
 	}
 
-	List<Customer> customers;
+	Map<String, Customer> customers;
 
 	public Bank() {
-		//start();
+		loadSampleCustomers();
+		start();
 	}
 
 	void loadSampleCustomers() {
-		//customers = new HashMap<Customer>();
+		customers = new HashMap<String, Customer>();
 
-		//customers.put("test1", new Customer("test1", "1234"));
-		//customers.put("test2", new Customer("test2", "4321"));
+		customers.put("test1", new Customer("test1", "1234"));
+		customers.put("test2", new Customer("test2", "4321"));
 	}
 
 	void saveCustomers() {
@@ -47,24 +48,24 @@ public class Bank implements HasMenu {
 			System.out.print("PIN: ");
 			String PIN_input = scanner.nextLine();
 			
-		//	Customer loaded = customers.get(username_input);
-		//	if (loaded != null && loaded.getPIN().equals(PIN_input))
-		//		keepGoing = false;
-		//	else
-		//		System.out.println("Invalid Customer. Try again..");
+			loaded = customers.get(username_input);
+			if (loaded != null && loaded.getPIN().equals(PIN_input))
+				keepGoing = false;
+			else
+				System.out.println("Invalid Customer. Try again..");
 		}
 
 		System.out.println("Login Successful!");
-		//loaded.start();
+		loaded.start();
 	}
 
-	private String menu() {
+	public String menu() {
 		String menu_text = "";
 		
 		return menu_text;	
 	}
 
-	void start() {
+	public void start() {
 		loginAsCustomer();
 	}
 

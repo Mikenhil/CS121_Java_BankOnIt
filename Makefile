@@ -1,3 +1,6 @@
+Bank.class: Bank.java
+	javac -g Bank.java
+
 Customer.class: Customer.java User.class CheckingAccount.class SavingsAccount.class
 	javac -g Customer.java
 
@@ -25,5 +28,22 @@ testChecking: CheckingAccount.class
 testSavings: SavingsAccount.class
 	java SavingsAccount
 
+simple-bld:
+	make HasMenu.class
+	make CheckingAccount.class
+	make SavingsAccount.class
+	make User.class
+	make Customer.class
+	make Bank.class
+
+br:
+	make simple-bld
+	java Bank
+
 clean:
 	rm *.class
+
+git-update:
+	git add -A
+	git commit -m main
+	git push

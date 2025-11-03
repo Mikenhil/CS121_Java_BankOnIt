@@ -14,14 +14,14 @@ public class Customer extends User {
 	}
 
 	public Customer(String userName, String PIN) {
-	//	this.userName = userName;
-	//	this.PIN = PIN;
+		this.userName = userName;
+		this.PIN = PIN;
 
 		checking = new CheckingAccount(500);
 		savings = new SavingsAccount(500);
 	}	
 	
-	String menu() {
+	public String menu() {
 		String menu_text = "\nCustomer Menu\n\n";
 		menu_text += "0) Exit\n";
 		menu_text += "1) Manage Checking Account\n";
@@ -36,7 +36,7 @@ public class Customer extends User {
 		while(keepGoing) {
 			Scanner scanner = new Scanner(System.in);
 
-			System.out.println(menu_text);
+			System.out.println(menu());
 
 			System.out.print("Action (0-3): ");
 			String response = scanner.nextLine();

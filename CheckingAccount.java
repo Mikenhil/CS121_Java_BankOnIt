@@ -10,8 +10,6 @@ public class CheckingAccount implements HasMenu {
 
 	public CheckingAccount() {
 		balance = 0;
-
-		this.start();
 	}
 
 	public CheckingAccount(double balance) {
