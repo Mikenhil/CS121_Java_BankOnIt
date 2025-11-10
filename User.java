@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.*;
 
-public abstract class User implements HasMenu {
+public abstract class User implements HasMenu, Serializable {
 	
 	protected String userName;
 	protected String PIN;
@@ -14,7 +15,7 @@ public abstract class User implements HasMenu {
 	}
 
 	public boolean login(String userName, String PIN) {
-		return false;
+		return this.userName.equals(userName) && this.PIN.equals(PIN);
 	}
 
 	public void setUserName(String UserName) {

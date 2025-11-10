@@ -69,6 +69,10 @@ public class Customer extends User {
 
 	@Override
 	public String getReport() {
-		return "";
+		String report_text = "User: " + this.userName 
+			+ ", Checking: " + checking.getBalance()
+			+ ", Savings: $" + savings.getBalance();
+
+		return report_text;
 	}
 }

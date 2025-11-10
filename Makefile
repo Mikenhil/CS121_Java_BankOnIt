@@ -1,6 +1,9 @@
 Bank.class: Bank.java
 	javac -g Bank.java
 
+Admin.class: Admin.java User.class
+	javac -g Admin.java
+
 Customer.class: Customer.java User.class CheckingAccount.class SavingsAccount.class
 	javac -g Customer.java
 
@@ -34,6 +37,7 @@ simple-bld:
 	make SavingsAccount.class
 	make User.class
 	make Customer.class
+	make Admin.class
 	make Bank.class
 
 br:
@@ -41,6 +45,7 @@ br:
 	java Bank
 
 clean:
+	rm *.dat
 	rm *.class
 
 git-update:
