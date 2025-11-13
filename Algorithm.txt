@@ -1,0 +1,138 @@
+
+Declare Class Bank (implement HasMenu)
+	Declare Variable filePath: String (Default="customerData.dat")
+	Declare Variable admin: admin
+	Declare Variable customers: List<Customer>
+
+	Constructor Bank
+		Assign admin: Admin("admin", "0000")
+		
+		// Uncomment the next two lines to refresh customer data file
+		// loadSampleCustomers()
+		// saveCustomers();
+
+		// Gets data from customerData.dat
+		Call loadCustomers()
+		// Runs main program loop
+		Call start()
+		// Saves the new data upon exiting the program
+		Call saveCustomers()
+
+	Method loadSampleCustomers(): void
+		Assign customers: List<Customer>
+		
+		customers -> Add: Customer("John", "1234")
+		customers -> Add: Customer("Doe", "0000")
+
+	Method loadCustomers(): void
+		Load -> customerData.dat
+		Deserialize -> in
+		Cast in To customers: List<Customer>
+
+	Method saveCustomers(): void
+		Load -> customerData.dat
+		Serialize -> out
+		Write out To customerData.dat
+
+	Method reportAllUsers(): void
+		Iterate customer In customers
+			Print customer.getReport()
+
+	Method addUser(): void
+		Print "Add a user\n"
+
+		Declare variable scanner: Scanner
+
+		Declare Variable keepGoing: Boolean (Default=true)
+		WHILELOOP keepGoing Equals True
+			
+			new_username: Prompt_Input(Get the new username)
+			new_PIN: Prompt_Input(Get the new PIN)
+			conf_PIN: Prompt_Input(Confirm the new PIN)
+
+			IF new_PIN Equals conf_PIN
+				customers -> Add: Customer(new_username, new_PIN)
+				Set keepGoing Equals False
+			ELSE
+				Print "PIN does not match. Try again.."
+
+	Method loginAsCustomer():
+		Print "Customer login"
+
+		Declare variable scanner: Scanner
+
+		Declare Variable keepGoing: Boolean (Default=true)
+		WHILELOOP keepGoing Equals True
+			username: Prompt_Input(Prompt user for userName)
+			PIN: Prompt_Input(Prompt user for PIN)
+
+			FORLOOP Iterate customer in customers
+				IF customer.login(username, PIN) Equals True
+					Print "Login Successful!"
+					Set keepGoing Equals False
+					Call customer.start()
+						
+					Break from ForLoop
+
+	Method loginAsAdmin():
+		Print "Admin login"
+
+		Declare variable scanner: Scanner
+
+		Declare Variable keepGoing: Boolean (Default=true)
+		WHILELOOP keepGoing Equals True
+			username: Prompt_Input(Prompt user for userName)
+			PIN: Prompt_Input(Prompt user for PIN)
+
+			IF admin.login(username, PIN) Equals True
+				Print "Login Successful!"
+				Call startAdmin()	
+			Set keepGoing Equals False		
+
+
+	Public Method menu(): String
+		return menu_text: String
+
+	Public Method start(): void
+		Declare variable scanner: Scanner
+
+		Declare Variable keepGoing: Boolean (Default=true)
+		WHILELOOP keepGoing Equals True
+			input: Prompt_Input(Prompt user for 0-2)
+
+			IF input Equals "0"
+				Set keepGoing Equals False
+
+				ELSEIF input Equals "1"
+					Call loginAsAdmin()
+
+				ELSEIF input Equals "2"				
+					Call loginAsCustomer()
+
+				ELSE
+					Print "Invalid Input. Try again.."			
+			
+	Method startAdmin(): void
+		Declare variable scanner: Scanner
+
+		Declare Variable keepGoing: Boolean (Default=true)
+		WHILELOOP keepGoing Equals True
+			input: Prompt_Input(Prompt user for 0-3)
+
+			IF input Equals "0"
+				Set keepGoing Equals False
+
+				ELSEIF input Equals "1"
+					Call reportAllUsers()
+
+				ELSEIF input Equals "2"				
+					Call addUser()
+
+				ELSEIF input Equals "3"
+
+				ELSE
+					Print "Invalid Input. Try again.."	
+
+
+
+
